@@ -51,5 +51,5 @@ if percent_change > 0:
                      f"Headline: {story['title']}\n"
                      f"URL: {story['url']}",
                 from_='+16692605549',
-                to='+447943552608'
+                to=os.getenv("PHONE_NUMBER")
             )

@@ -1,11 +1,14 @@
 import requests
 import os
 from twilio.rest import Client
+from dotenv import load_dotenv
+
+load_dotenv()
 
 STOCK_PARAMS = {
     "function": "TIME_SERIES_DAILY_ADJUSTED",
     "symbol": "TSLA",
-    "apikey": "SFQ442VNAIMF4JDN"
+    "apikey": os.getenv("STOCK_API_KEY")
 
 }
 
@@ -15,12 +18,12 @@ STOCK_ENDPOINT = "https://www.alphavantage.co/query"
 NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
 
 NEWS_PARAMS = {
-    "apiKey": "d6a0fd6208424303990764739988a502",
+    "apiKey": os.getenv("NEWS_API_KEY"),
     "q": COMPANY_NAME
 }
 
-account_sid = "ACfd61e2f33694c0a01346819f1e87a05d"
-auth_token = "817fe5e9dc1b5cefd71f115fdabff390"
+account_sid = os.getenv("TWILIO_SID")
+auth_token = os.getenv("TWILIO_AUTH_TOKEN")
 
 client = Client(account_sid, auth_token)
 
@@ -49,4 +52,4 @@ if percent_change > 0:
                      f"URL: {story['url']}",
                 from_='+16692605549',
                 to='+447943552608'
-        )
+            )
